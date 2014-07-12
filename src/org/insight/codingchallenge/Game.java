@@ -47,9 +47,14 @@ public class Game {
 	static boolean playNextHand=true;
 
 
+	/**
+	 * The main function to be started
+	 * @param args unused
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException {
 
-		System.out.print("Welcome to BlackJack! Please enter your name : ");
+		System.out.print("Welcome to BlackJack! \n Please enter your name : ");
 		input=new BufferedReader(new InputStreamReader(System.in));
 
 		playerName=input.readLine();
@@ -101,13 +106,13 @@ public class Game {
 				System.exit(0);
 			}
 			
-			System.out.println("Play another hand? [Y/n] ");
+			System.out.println("Your purse has "+playerPurse+" chips.Play another hand? [Y/n] ");
 			String answer=input.readLine();
 			if(answer.equalsIgnoreCase("n"))
 				break;
 		}
 
-		System.out.println(" Thank you for playing blackjack, "+playerName+". Your final purse is " + playerPurse + "chips");
+		System.out.println(" Thank you for playing blackjack, "+playerName+". Your final purse is " + playerPurse + " chips");
 		input.close();
 
 	} 
@@ -207,9 +212,21 @@ public class Game {
 							
 				System.out.println("<Dealt " + newCard+">");
 				
+				try {
+					Thread.sleep(250);
+				} catch (InterruptedException e) {
+				
+				}
+				
 				if (playerHand.getHandValue() > 21) {
 					
 					System.out.println("Your score: "+playerHand.getHandValue()+"\nYou have been busted! ");
+				
+					try {
+						Thread.sleep(250);
+					} catch (InterruptedException e) {
+					
+					}
 					
 					System.out.println("Final hands: ");
 					System.out.print("Dealer: ");
@@ -228,18 +245,37 @@ public class Game {
 		// If player stands, dealer HITs till he crosses 16. If dealer crosses 21, its a bust
 		
 		System.out.println("You opted to STAND. Your final score : "+playerHand.getHandValue());
-		System.out.println("Dealer hits till he crosses 16");
+		
+		try {
+			Thread.sleep(250);
+		} catch (InterruptedException e1) {
+		
+		}
+		System.out.println("Dealer hits till he's less than 17");
 		
 		System.out.print("Dealer: ");
 		displayHand(dealerHand);
 		
 		while (dealerHand.getHandValue() <= 16) {
 			Card newCard = deck.dealCard();
-			System.out.println("<Dealt" + newCard+">");
+			
+			System.out.println("<Dealt " + newCard+">");
 			dealerHand.addCard(newCard);
+			
+			try {
+				Thread.sleep(250);
+			} catch (InterruptedException e1) {
+			}
 			
 			if (dealerHand.getHandValue() > 21) {
 				System.out.println("Dealer busted with score : "+dealerHand.getHandValue()+". You win!");
+			
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					System.out.println("Interrupted!");
+				}
+				
 				playerWon=true;
 				return;
 			}
@@ -255,10 +291,13 @@ public class Game {
 		System.out.print("Dealer score: ");
 		System.out.println(dealerHand.getHandValue());
 		
+		System.out.println();
+		
 		System.out.print(playerName+" : ");
 		displayHand(playerHand);
 		System.out.println(playerName+"'s score: "+playerHand.getHandValue());
 		
+		System.out.println();
 		
 		if (dealerHand.getHandValue() == playerHand.getHandValue()) {
 			System.out.println("Tie. Advantage to dealer.  You lose.");
@@ -271,7 +310,7 @@ public class Game {
 			return;
 		}
 		else {
-			System.out.println("You win! ");
+			System.out.println("You win "+betAmount+" chips!");
 			playerWon=true;
 			return;
 		}

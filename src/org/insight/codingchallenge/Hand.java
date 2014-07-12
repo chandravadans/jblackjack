@@ -32,7 +32,7 @@ public class Hand {
 
 	/**
 	 * Adds a card to the hand.
-	 * @param c The card to be added. If NULL, doesn't add it.
+	 * @param card The card to be added. If NULL, doesn't add it.
 	 * @see Card
 	 */
 	public void addCard(Card card) {
@@ -54,9 +54,9 @@ public class Hand {
 	 * @param n The index of the desired card
 	 * @return Card The nth card in hand
 	 */
-	public Card getCard(int position) {
-		if (position >= 0 && position < hand.size())
-			return (Card)hand.get(position);
+	public Card getCard(int n) {
+		if (n >= 0 && n < hand.size())
+			return (Card)hand.get(n);
 		else
 			return null;
 	}

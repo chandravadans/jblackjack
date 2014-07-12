@@ -59,7 +59,7 @@ public class Deck {
 
 	/**
 	 * Deals the topmost card on the deck
-	 * @return
+	 * @return The topmost card on the deck
 	 */
 	public Card dealCard() {
 		
