@@ -106,7 +106,7 @@ public class Game {
 				System.exit(0);
 			}
 			
-			System.out.println("Your purse has "+playerPurse+" chips.Play another hand? [Y/n] ");
+			System.out.println("Your purse has "+playerPurse+" chips.Play another hand? [Y/n] \n>");
 			String answer=input.readLine();
 			if(answer.equalsIgnoreCase("n"))
 				break;
@@ -169,7 +169,7 @@ public class Game {
 			System.out.print(playerName+" : ");
 			displayHand(playerHand);
 			
-			System.out.println(playerName+" has the Blackjack!"+playerName+" wins $"+betAmount+"!!");
+			System.out.println(playerName+" has the Blackjack! "+playerName+" wins "+betAmount+" chips!!");
 			playerWon=true;
 			return;
 		}
@@ -194,6 +194,7 @@ public class Game {
 					
 			while(!playerChoice.equalsIgnoreCase("H") && !playerChoice.equalsIgnoreCase("S"))
 			{
+				System.out.print("Please type 'h' if you want to HIT, and 's' if you want to STAND ");
 				playerChoice = input.readLine();
 				if (!playerChoice.equalsIgnoreCase("H") && !playerChoice.equalsIgnoreCase("S"))
 					System.out.print("Please type 'h' if you want to HIT, and 's' if you want to STAND ");
@@ -228,6 +229,7 @@ public class Game {
 					
 					}
 					
+					System.out.println("-----------------------------------------------");
 					System.out.println("Final hands: ");
 					System.out.print("Dealer: ");
 					displayHand(dealerHand);
@@ -270,6 +272,14 @@ public class Game {
 			if (dealerHand.getHandValue() > 21) {
 				System.out.println("Dealer busted with score : "+dealerHand.getHandValue()+". You win!");
 			
+				System.out.println("-----------------------------------------------");
+				System.out.println("Final hands: ");
+				System.out.print("Dealer: ");
+				displayHand(dealerHand);
+				
+				System.out.print(playerName+":");
+				displayHand(playerHand);
+				
 				try {
 					Thread.sleep(500);
 				} catch (InterruptedException e) {
@@ -284,7 +294,8 @@ public class Game {
 
 		//Nobody got a blackjack. Compare scores and decide winner.
 		// A tie means dealer has won
-
+		
+		System.out.println("-----------------------------------------------");
 		System.out.println("Final Hands: ");
 		System.out.print("Dealer: ");
 		displayHand(dealerHand);
