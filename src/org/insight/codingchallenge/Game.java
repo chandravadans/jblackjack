@@ -27,7 +27,7 @@ public class Game {
 	static final int INITIAL_PURSE=100;
 	
 	/**
-	 * Amount of money the player wishes to bet on this hand
+	 * No. of chips the player wishes to bet on this hand
 	 */
 	static int betAmount;            
 	
@@ -60,7 +60,7 @@ public class Game {
 			
 			// A single hand of BlackJack
 			
-			System.out.println("Welcome "+playerName+", you currently have $" + playerPurse);
+			System.out.println("Welcome "+playerName+", you currently have " + playerPurse+ " chips");
 			do {
 				System.out.println("Place your bet  (Enter -1 to leave the table): ");
 				System.out.print("> ");
@@ -71,16 +71,16 @@ public class Game {
 					betAmount=Integer.parseInt(possibleBetAmount);
 				}
 				catch(Exception e){
-					System.out.println("Sorry, that wasn't a valid amount. The bet amount must be atleast $1 and atmost $"+playerPurse);
+					System.out.println("Sorry, that wasn't a valid amount. You must bet atleat 1 and atmost "+playerPurse+" chips");
 					betAmount=Integer.MIN_VALUE;
 				}
 
 				if(betAmount<-1 && betAmount!=Integer.MIN_VALUE)
 					System.out.println("Sorry, negative amounts aren't allowed");
 				else if (betAmount == 0)
-					System.out.println("Sorry, you need to bet atleast $1");
+					System.out.println("Sorry, you need to bet atleast 1 chip");
 				else if(betAmount > playerPurse)
-					System.out.println("Sorry, you can bet atmost $"+playerPurse);
+					System.out.println("Sorry, you can bet atmost "+playerPurse+" chips");
 				
 
 			} while ((betAmount < 0 || betAmount > playerPurse) && (betAmount!=-1));
@@ -107,7 +107,7 @@ public class Game {
 				break;
 		}
 
-		System.out.println(" Thank you for playing blackjack, "+playerName+". Your final purse is $" + playerPurse + '.');
+		System.out.println(" Thank you for playing blackjack, "+playerName+". Your final purse is " + playerPurse + "chips");
 		input.close();
 
 	} 
